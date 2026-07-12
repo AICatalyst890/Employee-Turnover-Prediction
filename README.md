@@ -23,5 +23,5 @@ Based on our test set evaluations, the **Lasso (L1) Regularization** model yield
 ## 🛠️ Installation & Setup
 
 1. **Clone the repository:**
-git clone https://github.com/AICatalyst/Employee-Turnover-Prediction.git
+git clone https://github.com/AICatalyst890/Employee-Turnover-Prediction.git
 cd Employee-Turnover-Prediction
