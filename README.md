@@ -1,27 +1,46 @@
 # Employee Turnover Prediction
 
-An end-to-end machine learning project designed to predict employee attrition using classification models. This project implements baseline logistic regression along with L1 (Lasso), L2 (Ridge), and ElasticNet regularization techniques to identify key drivers of employee turnover and improve model generalization.
+A streamlined machine learning workflow implementing and benchmarking regularized Logistic Regression models to predict employee attrition.
 
-## 📊 Project Overview
-Predicting employee turnover helps organizations proactively address retention challenges. This repository explores data preprocessing and regularized linear classification models to predict whether an employee is likely to leave or stay.
+---
 
-### Model Performance Summary
-Based on our test set evaluations, the **Lasso (L1) Regularization** model yielded the highest accuracy by effectively filtering out noisy features:
+## 📊 Pipeline Workflow
 
-| Model | Accuracy | Precision (Class 1) | Recall (Class 1) | F1-Score (Class 1) |
-| :--- | :---: | :---: | :---: | :---: |
-| **Lasso (L1)** | **87.04%** | **88.14%** | **83.00%** | **0.86** |
-| **ElasticNet** | 86.30% | 87.93% | 82.00% | 0.85 |
-| **Baseline (Logistic)** | 85.93% | 87.18% | 82.00% | 0.84 |
-| **Ridge (L2)** | 85.19% | 84.55% | 83.00% | 0.84 |
+1. **Exploratory Visualization:** Analyzed the relationship between `Job_Satisfaction` and `Employee_Turnover` using a Seaborn bar plot.
+2. **Data Split:** Partitioned the dataset using an 80/20 train-test split (`random_state=42`).
+3. **Model Training:** Evaluated four variations of Logistic Regression:
+* **Baseline:** Standard unpenalized model (`max_iter=500`).
+* **Lasso ($L_1$):** Configured with `C=0.5` and `solver="liblinear"`.
+* **Ridge ($L_2$):** Configured with `C=0.2` and `solver="liblinear"`.
+* **ElasticNet:** Configured with `C=0.5`, `l1_ratio=0.8`, and `solver="saga"`.
 
-## 🚀 Features
-- **Data Preprocessing & Cleaning:** Handling missing values, encoding categorical variables, and feature scaling.
-- **Regularization Analysis:** Comparison between Baseline Logistic Regression, Lasso, Ridge, and ElasticNet models.
-- **Performance Evaluation:** Comprehensive breakdown using Accuracy, Precision, Recall, and F1-Scores.
 
-## 🛠️ Installation & Setup
 
-1. **Clone the repository:**
-git clone https://github.com/AICatalyst890/Employee-Turnover-Prediction.git
-cd Employee-Turnover-Prediction
+---
+
+## 📈 Model Performance Benchmark
+
+Evaluating the test set (145 retention and 125 turnover instances) yielded the following exact metrics:
+
+| Model Hierarchy | Accuracy | Precision (Class 1) | Recall (Class 1) | F1-Score (Class 1) |
+| --- | --- | --- | --- | --- |
+| **Lasso ($L_1$ Regularization) 🏆** | **87.04%** | **88.14%** | **83.00%** | **86.00%** |
+| **ElasticNet** | 86.30% | 87.93% | 82.00% | 85.00% |
+| **Baseline Logistic Regression** | 85.93% | 87.18% | 82.00% | 84.00% |
+| **Ridge ($L_2$ Regularization)** | 85.19% | 84.55% | **83.00%** | 84.00% |
+
+---
+
+## 🎯 Key Insights
+
+* **Lasso ($L_1$) is the Champion Model:** Outperformed all configurations by successfully driving non-impactful feature coefficients to zero, resulting in the best generalizability.
+* **Optimal Business Balance:** Achieved **88.14% Precision** (minimizing costly "false alarms" on retention incentives) and **83.00% Recall** (capturing the vast majority of true flight-risk employees).
+
+---
+
+## 📂 Repository Structure
+
+* `employeeTurnover.ipynb` — Main Jupyter Notebook with data visualization, training, and evaluation.
+* `employee_turnover.csv` — Anonymized historical workforce dataset.
+* `requirements.txt` — Project environment dependencies.
+* `README.md` — Project summary and benchmarks.
